@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import * as React from 'react'
 import CountryCard from './components/CountryCard'
 
-function App(): React.FC {
+function App() {
   return (
       <div css={{ minHeight: '100vh' }}>
         <CountryCard
