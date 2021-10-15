@@ -1,6 +1,6 @@
 # Countries List
 
-This project was bootstrapped with Vite using React, Typescript, MUI v5.
+This project was bootstrapped with Vite using React, Typescript, Emotion.
 
 ## Available Scripts
 
