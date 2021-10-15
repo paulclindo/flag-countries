@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 import * as React from 'react'
-import { Box, Stack, Typography } from '@mui/material'
 
 interface CountryCardProps {
   name: string
@@ -17,8 +18,8 @@ const CountryCard: React.FC<CountryCardProps> = ({
   imgUrl,
 }) => {
   return (
-    <Box
-      sx={{
+    <div
+      css={{
         maxWidth: '280px',
         borderRadius: '6px',
         bgcolor: 'background.card',
@@ -26,9 +27,9 @@ const CountryCard: React.FC<CountryCardProps> = ({
           '0px 20px 25px -5px rgba(0,0,0,0.1) , 0px 10px 10px -5px rgba(0,0,0,0.04)',
       }}
     >
-      <Box
-        sx={{
-          aspectRatio: '16/9',
+      <div
+        css={{
+          paddingBottom: '56.25%',
           height: 0,
           position: 'relative',
           '& img': {
@@ -44,38 +45,36 @@ const CountryCard: React.FC<CountryCardProps> = ({
         }}
       >
         <img src={imgUrl} alt={`${name} flag`} loading="lazy" />
-      </Box>
-      <Stack
-        spacing={0.6}
-        sx={{
-          p: 4,
-          pb: 5.4,
-          color: 'text.primary',
+      </div>
+      <div
+        css={{
+          padding: '16px',
+          paddingBottom: '24px',
         }}
       >
-        <Typography variant="h6" fontWeight="800" sx={{ mb: 1.2 }}>
+        <h3 css={{ marginBottom: '8px', fontWeight: 700 }}>
           {name}
-        </Typography>
-        <Typography fontWeight="600">
+        </h3>
+        <p css={{ fontWeight: 700 }}>
           Population:{' '}
-          <Typography component="span" color="text.secondary">
+          <span css={{ fontWeight: 400 }}>
             {population}
-          </Typography>
-        </Typography>
-        <Typography fontWeight="600">
+          </span>
+        </p>
+        <p css={{ fontWeight: 700 }}>
           Region:{' '}
-          <Typography component="span" color="text.secondary">
+          <span css={{ fontWeight: 400 }}>
             {region}
-          </Typography>
-        </Typography>
-        <Typography fontWeight="600">
+          </span>
+        </p>
+        <p css={{ fontWeight: 700 }}>
           Capital:{' '}
-          <Typography component="span" color="text.secondary">
+          <span css={{ fontWeight: 400 }}>
             {capitalCity}
-          </Typography>
-        </Typography>
-      </Stack>
-    </Box>
+          </span>
+        </p>
+      </div>
+    </div>
   )
 }
 
