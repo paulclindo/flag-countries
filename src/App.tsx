@@ -5,6 +5,7 @@ import CountryCard from './components/CountryCard'
 import { globalStyles } from './styles/globalStyles'
 // import { ReactComponent as SunIcon } from './assets/icons/sun.svg'
 import { ReactComponent as MoonIcon } from './assets/icons/moon.svg'
+import { ReactComponent as SearchIcon } from './assets/icons/search.svg'
 
 function Topbar() {
   return (
@@ -26,6 +27,7 @@ function Topbar() {
       >
         <h1 css={{ margin: 0, fontSize: '1.25rem' }}>Where in the world?</h1>
         <button
+          type="button"
           css={{
             padding: '10px 2px',
             background: 'transparent',
@@ -33,6 +35,9 @@ function Topbar() {
             display: 'inline-flex',
             svg: {
               marginRight: 8,
+            },
+            '&:hover': {
+              opacity: 0.8,
             },
           }}
         >
@@ -52,12 +57,56 @@ function App() {
         <Topbar />
         <div
           css={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            display: 'flex',
+            marginTop: 40,
+            marginBottom: 40,
+            justifyContent: 'space-between',
+          }}
+        >
+          <div css={{ position: 'relative' }}>
+            <SearchIcon css={{ position: 'absolute', left: 26, top: 20 }} />
+            <input
+              css={{
+                width: 400,
+                background: 'white',
+                border: 0,
+                padding: 20,
+                paddingLeft: 60,
+                boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
+                fontSize: '0.875rem',
+              }}
+              type="text"
+              placeholder="Search for a country..."
+            />
+          </div>
+          <select
+            name="region"
+            id="region"
+            css={{
+              border: 0,
+              width: 190,
+              background: 'white',
+              padding: '15px 23px',
+              boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
+            }}
+          >
+            <option selected disabled value="">
+              Filter by Region
+            </option>
+            <option value="africa">Africa</option>
+            <option value="america">America</option>
+            <option value="asia">Europe</option>
+          </select>
+        </div>
+        <div
+          css={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4,1fr)',
             gridGap: '60px',
             maxWidth: 1200,
             margin: '0 auto',
-            paddingTop: 40,
           }}
         >
           {Array.from({ length: 10 }).map((item) => (
