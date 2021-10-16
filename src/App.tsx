@@ -51,7 +51,7 @@ function Topbar() {
 
 function App() {
   return (
-    <>
+    <div>
       <Global styles={globalStyles} />
       <div css={{}}>
         <Topbar />
@@ -109,9 +109,9 @@ function App() {
             margin: '0 auto',
           }}
         >
-          {Array.from({ length: 10 }).map((item) => (
+          {Array.from({ length: 10 }).map((_, idx) => (
             <CountryCard
-              key={item}
+              key={idx}
               name="Peru"
               population="81,700,900"
               region="South America"
@@ -121,7 +121,7 @@ function App() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
