@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import NunitoSansLight from '../assets/fonts/NunitoSans-Light.ttf'
-import NunitoSansSemiBold from '../assets/fonts/NunitoSans-Semibold.ttf'
+import NunitoSansSemiBold from '../assets/fonts/NunitoSans-SemiBold.ttf'
 import NunitoSansExtraBold from '../assets/fonts/NunitoSans-ExtraBold.ttf'
 
 export const globalStyles = css`
