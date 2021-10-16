@@ -20,11 +20,9 @@ const CountryCard: React.FC<CountryCardProps> = ({
   return (
     <div
       css={{
-        maxWidth: '280px',
         borderRadius: '6px',
-        bgcolor: 'background.card',
-        boxShadow:
-          '0px 20px 25px -5px rgba(0,0,0,0.1) , 0px 10px 10px -5px rgba(0,0,0,0.04)',
+        boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
+        overflow: 'hidden',
       }}
     >
       <div
@@ -48,30 +46,30 @@ const CountryCard: React.FC<CountryCardProps> = ({
       </div>
       <div
         css={{
-          padding: '16px',
-          paddingBottom: '24px',
+          padding: '20px',
+          paddingBottom: '32px',
+          h3: {
+            margin: 0,
+            marginBottom: 12,
+          },
+          p: {
+            margin: 0,
+            fontSize: '1rem',
+            '& + p': {
+              marginTop: '6px',
+            },
+          },
         }}
       >
-        <h3 css={{ marginBottom: '8px', fontWeight: 700 }}>
-          {name}
-        </h3>
-        <p css={{ fontWeight: 700 }}>
-          Population:{' '}
-          <span css={{ fontWeight: 400 }}>
-            {population}
-          </span>
+        <h3 css={{ marginBottom: '16px', fontWeight: 800 }}>{name}</h3>
+        <p css={{ fontWeight: 600 }}>
+          Population: <span css={{ fontWeight: 300 }}>{population}</span>
         </p>
-        <p css={{ fontWeight: 700 }}>
-          Region:{' '}
-          <span css={{ fontWeight: 400 }}>
-            {region}
-          </span>
+        <p css={{ fontWeight: 600 }}>
+          Region: <span css={{ fontWeight: 300 }}>{region}</span>
         </p>
-        <p css={{ fontWeight: 700 }}>
-          Capital:{' '}
-          <span css={{ fontWeight: 400 }}>
-            {capitalCity}
-          </span>
+        <p css={{ fontWeight: 600 }}>
+          Capital: <span css={{ fontWeight: 300 }}>{capitalCity}</span>
         </p>
       </div>
     </div>
