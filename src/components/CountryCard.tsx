@@ -1,13 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
-
-type CountryCardProps = {
-  name: string
-  population: string
-  region: string
-  capitalCity: string
-  imgUrl: string
-}
+import {CountryCardProps} from '../types'
 
 const CountryCard = ({
   name,
