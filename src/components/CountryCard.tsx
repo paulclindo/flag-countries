@@ -1,8 +1,7 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/react'
-import * as React from 'react'
+import {jsx} from '@emotion/react'
 
-interface CountryCardProps {
+type CountryCardProps = {
   name: string
   population: string
   region: string
@@ -10,13 +9,13 @@ interface CountryCardProps {
   imgUrl: string
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({
+const CountryCard = ({
   name,
   population,
   region,
   capitalCity,
   imgUrl,
-}) => {
+}: CountryCardProps) => {
   return (
     <div
       css={{
@@ -61,15 +60,15 @@ const CountryCard: React.FC<CountryCardProps> = ({
           },
         }}
       >
-        <h3 css={{ marginBottom: '16px', fontWeight: 800 }}>{name}</h3>
-        <p css={{ fontWeight: 600 }}>
-          Population: <span css={{ fontWeight: 300 }}>{population}</span>
+        <h3 css={{marginBottom: '16px', fontWeight: 800}}>{name}</h3>
+        <p css={{fontWeight: 600}}>
+          Population: <span css={{fontWeight: 300}}>{population}</span>
         </p>
-        <p css={{ fontWeight: 600 }}>
-          Region: <span css={{ fontWeight: 300 }}>{region}</span>
+        <p css={{fontWeight: 600}}>
+          Region: <span css={{fontWeight: 300}}>{region}</span>
         </p>
-        <p css={{ fontWeight: 600 }}>
-          Capital: <span css={{ fontWeight: 300 }}>{capitalCity}</span>
+        <p css={{fontWeight: 600}}>
+          Capital: <span css={{fontWeight: 300}}>{capitalCity}</span>
         </p>
       </div>
     </div>

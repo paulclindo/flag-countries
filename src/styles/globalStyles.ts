@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import {css} from '@emotion/react'
 import NunitoSansLight from '../assets/fonts/NunitoSans-Light.ttf'
 import NunitoSansSemiBold from '../assets/fonts/NunitoSans-SemiBold.ttf'
 import NunitoSansExtraBold from '../assets/fonts/NunitoSans-ExtraBold.ttf'
@@ -28,11 +28,11 @@ export const globalStyles = css`
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
     background: hsl(0, 0%, 98%);
-    color:hsl(200, 15%, 8%),
+    color: hsl(200, 15%, 8%);
   }
   button {
     border: 0;
-    cursor: pointer,
+    cursor: pointer;
   }
   select {
     /* appearance: none; */
@@ -46,4 +46,4 @@ export const globalStyles = css`
     cursor: inherit;
     line-height: inherit;
   }
-}`
+`

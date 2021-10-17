@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import * as React from 'react'
-import { Global, jsx } from '@emotion/react'
+import {Global, jsx} from '@emotion/react'
 import CountryCard from './components/CountryCard'
-import { globalStyles } from './styles/globalStyles'
+import {globalStyles} from './styles/globalStyles'
 // import { ReactComponent as SunIcon } from './assets/icons/sun.svg'
-import { ReactComponent as MoonIcon } from './assets/icons/moon.svg'
-import { ReactComponent as SearchIcon } from './assets/icons/search.svg'
+import {ReactComponent as MoonIcon} from './assets/icons/moon.svg'
+import {ReactComponent as SearchIcon} from './assets/icons/search.svg'
 
 function Topbar() {
   return (
@@ -25,7 +25,7 @@ function Topbar() {
           justifyContent: 'space-between',
         }}
       >
-        <h1 css={{ margin: 0, fontSize: '1.25rem' }}>Where in the world?</h1>
+        <h1 css={{margin: 0, fontSize: '1.25rem'}}>Where in the world?</h1>
         <button
           type="button"
           css={{
@@ -65,8 +65,8 @@ function App() {
             justifyContent: 'space-between',
           }}
         >
-          <div css={{ position: 'relative' }}>
-            <SearchIcon css={{ position: 'absolute', left: 26, top: 20 }} />
+          <div css={{position: 'relative'}}>
+            <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
             <input
               css={{
                 width: 400,
@@ -109,7 +109,7 @@ function App() {
             margin: '0 auto',
           }}
         >
-          {Array.from({ length: 10 }).map((_, idx) => (
+          {Array.from({length: 10}).map((_, idx) => (
             <CountryCard
               key={idx}
               name="Peru"
