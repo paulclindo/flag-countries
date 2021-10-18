@@ -2,9 +2,10 @@
 import {jsx} from '@emotion/react'
 import React from 'react'
 import {useQuery} from 'react-query'
+import {Link} from 'react-router-dom'
 import {getCountries} from '../api/countries'
 import {ReactComponent as SearchIcon} from '../assets/icons/search.svg'
-import CountryCard from '../components/CountryCard'
+import {CountrySmallCard} from '../components/CountryCard'
 
 export default function Home() {
   const [countryName, setCountryName] = React.useState<string>('')
@@ -80,8 +81,8 @@ export default function Home() {
       >
         {isError ? <p>Error: {error}</p> : null}
         {isLoading ? (
-          Array.from({length: 6}).map((_, idx) => (
-            <CountryCard
+          Array.from({length: 8}).map((_, idx) => (
+            <CountrySmallCard
               key={idx}
               name="Loading..."
               population="Loading..."
@@ -94,19 +95,26 @@ export default function Home() {
           countries.map(
             (country: {
               name: {common: string}
+              cca2: string
               population: string
               region: string
               capital: string
               flags: {png: string}
             }) => (
-              <CountryCard
-                key={country.name.common}
-                name={country.name.common}
-                population={country.population}
-                region={country.region}
-                capitalCity={country.capital}
-                imgUrl={country.flags.png}
-              />
+              <Link
+                key={country.cca2}
+                to={`/detail/${country.cca2}`}
+                css={{color: 'inherit', textDecoration: 'none'}}
+              >
+                <CountrySmallCard
+                  key={country.name.common}
+                  name={country.name.common}
+                  population={country.population}
+                  region={country.region}
+                  capitalCity={country.capital}
+                  imgUrl={country.flags.png}
+                />
+              </Link>
             )
           )
         ) : isSuccess && !countries.length ? (
