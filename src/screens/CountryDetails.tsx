@@ -4,6 +4,7 @@ import {useQuery} from 'react-query'
 import {useHistory, useParams} from 'react-router'
 import {getCountryDetail} from '../api/countries'
 import {CountryBigCard} from '../components/CountryCard'
+import {md} from '../styles/breakpoints'
 
 export default function CountryDetails() {
   const history = useHistory()
@@ -28,7 +29,7 @@ export default function CountryDetails() {
 
   return (
     <div css={{maxWidth: 1200, padding: '50px 30px 0', margin: '0 auto'}}>
-      <div css={{marginBottom: 80}}>
+      <div css={{marginBottom: 40, [md]: {marginBottom: 80}}}>
         <button
           onClick={() => history.goBack()}
           css={{
