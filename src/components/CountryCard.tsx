@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
+import {md} from '../styles/breakpoints'
 import {Country, CountryPreview} from '../types'
 
 function LabelRow({label, value}: {label: string; value: string}) {
@@ -92,7 +93,16 @@ function CountryBigCard({
         flexWrap: 'wrap',
       }}
     >
-      <div css={{flex: '1 1 45%', maxWidth: '45%'}}>
+      <div
+        css={{
+          flex: '1 1 100%',
+          maxWidth: '100%',
+          [md]: {
+            flex: '1 1 45%',
+            maxWidth: '45%',
+          },
+        }}
+      >
         <div
           css={{
             position: 'relative',
@@ -113,18 +123,49 @@ function CountryBigCard({
           <img src={imgUrl} alt={`${name} flag`} loading="lazy" />
         </div>
       </div>
-      <div css={{flex: '1 1 45%', maxWidth: '45%'}}>
+      <div
+        css={{
+          flex: '1 1 100%',
+          maxWidth: '100%',
+          [md]: {
+            flex: '1 1 45%',
+            maxWidth: '45%',
+          },
+        }}
+      >
         <h2>{name}</h2>
         <div
-          css={{display: 'flex', '& p': {margin: 0, '& + p': {marginTop: 14}}}}
+          css={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            '& p': {margin: 0, '& + p': {marginTop: 14}},
+          }}
         >
-          <div>
+          <div
+            css={{
+              flex: '1 1 100%',
+              maxWidth: '100%',
+              [md]: {
+                flex: '1 1 45%',
+                maxWidth: '45%',
+              },
+            }}
+          >
             <LabelRow label="Native Name" value={nativeName} />
             <LabelRow label="Population" value={population} />
             <LabelRow label="Region" value={region} />
             <LabelRow label="Sub Region" value={subRegion} />
           </div>
-          <div>
+          <div
+            css={{
+              flex: '1 1 100%',
+              maxWidth: '100%',
+              [md]: {
+                flex: '1 1 45%',
+                maxWidth: '45%',
+              },
+            }}
+          >
             <LabelRow label="Capital" value={capitalCity} />
             <LabelRow label="Top Level Domain" value={domain} />
             <LabelRow label="Currencies" value={currencies} />

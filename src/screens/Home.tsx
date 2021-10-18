@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {getCountries} from '../api/countries'
 import {ReactComponent as SearchIcon} from '../assets/icons/search.svg'
 import {CountrySmallCard} from '../components/CountryCard'
+import {md} from '../styles/breakpoints'
 
 export default function Home() {
   const [countryName, setCountryName] = React.useState<string>('')
@@ -28,20 +29,29 @@ export default function Home() {
           display: 'flex',
           marginTop: 40,
           marginBottom: 40,
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          [md]: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          },
         }}
       >
         <div css={{position: 'relative'}}>
           <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
           <input
             css={{
-              width: 400,
               background: 'white',
               border: 0,
               padding: 20,
               paddingLeft: 60,
               boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
               fontSize: '0.875rem',
+              width: '100%',
+              marginBottom: 10,
+              [md]: {
+                marginBottom: 0,
+                width: 400,
+              },
             }}
             type="text"
             placeholder="Search for a country..."
@@ -54,10 +64,14 @@ export default function Home() {
           id="region"
           css={{
             border: 0,
-            width: 190,
             background: 'white',
             padding: '15px 23px',
             boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
+            alignSelf: 'end',
+            width: '100%',
+            [md]: {
+              width: 190,
+            },
           }}
           value={countryRegion}
           onChange={(e) => setCountryRegion(e.target.value)}

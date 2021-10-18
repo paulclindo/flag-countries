@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import {ReactComponent as MoonIcon} from './assets/icons/moon.svg'
 import CountryDetails from './screens/CountryDetails'
 import Home from './screens/Home'
+import {md} from './styles/breakpoints'
 import {globalStyles} from './styles/globalStyles'
 
 const queryClient = new QueryClient()
@@ -33,7 +34,17 @@ function Layout({children}: {children: React.ReactNode}) {
           }}
         >
           <Link css={{textDecoration: 'none', color: 'inherit'}} to="/">
-            <h1 css={{margin: 0, fontSize: '1.25rem'}}>Where in the world?</h1>
+            <h1
+              css={{
+                margin: 0,
+                fontSize: '1rem',
+                [md]: {
+                  fontSize: '1.25rem',
+                },
+              }}
+            >
+              Where in the world?
+            </h1>
           </Link>
           <button
             type="button"
