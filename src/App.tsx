@@ -3,8 +3,10 @@ import {Global, jsx} from '@emotion/react'
 import * as React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query'
 import {ReactQueryDevtools} from 'react-query/devtools'
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 // import { ReactComponent as SunIcon } from './assets/icons/sun.svg'
 import {ReactComponent as MoonIcon} from './assets/icons/moon.svg'
+import CountryDetails from './screens/CountryDetails'
 import Home from './screens/Home'
 import {globalStyles} from './styles/globalStyles'
 
@@ -30,7 +32,9 @@ function Layout({children}: {children: React.ReactNode}) {
             justifyContent: 'space-between',
           }}
         >
-          <h1 css={{margin: 0, fontSize: '1.25rem'}}>Where in the world?</h1>
+          <Link css={{textDecoration: 'none', color: 'inherit'}} to="/">
+            <h1 css={{margin: 0, fontSize: '1.25rem'}}>Where in the world?</h1>
+          </Link>
           <button
             type="button"
             css={{
@@ -60,10 +64,19 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Global styles={globalStyles} />
-      <Layout>
-        <Home />
-      </Layout>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/detail/:code">
+              <CountryDetails />
+            </Route>
+          </Switch>
+        </Layout>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Router>
     </QueryClientProvider>
   )
 }
