@@ -19,6 +19,22 @@ export const globalStyles = css`
     font-weight: 800;
     src: url(${NunitoSansExtraBold}) format('truetype');
   }
+
+  /* CSS vars */
+  body.light {
+    --element-color: hsl(0, 0%, 100%);
+    --text-color: hsl(200, 15%, 8%);
+    --background-color: hsl(0, 0%, 98%);
+    --input-color: hsl(0, 0%, 52%);
+  }
+  body.dark {
+    --element-color: hsl(209, 23%, 22%);
+    --text-color: hsl(0, 0%, 100%);
+    --background-color: hsl(207, 26%, 17%);
+    --input-color: hsl(0, 0%, 52%);
+  }
+
+  /* Global styles */
   *,
   *::before,
   *::after {
@@ -27,8 +43,8 @@ export const globalStyles = css`
   body {
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
-    background: hsl(0, 0%, 98%);
-    color: hsl(200, 15%, 8%);
+    background: var(--background-color);
+    color: var(--text-color);
   }
   button {
     border: 0;
