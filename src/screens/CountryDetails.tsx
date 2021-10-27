@@ -36,7 +36,10 @@ export default function CountryDetails() {
             boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
             minWidth: 135,
             padding: 10,
-            background: 'white',
+            fontWeight: 300,
+            fontSize: '1rem',
+            background: 'var(--element-color)',
+            color: 'var(--text-color)',
           }}
         >
           Back

@@ -4,7 +4,7 @@ import * as React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query'
 import {ReactQueryDevtools} from 'react-query/devtools'
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
-// import { ReactComponent as SunIcon } from './assets/icons/sun.svg'
+import {ReactComponent as SunIcon} from './assets/icons/sun.svg'
 import {ReactComponent as MoonIcon} from './assets/icons/moon.svg'
 import CountryDetails from './screens/CountryDetails'
 import Home from './screens/Home'
@@ -24,7 +24,7 @@ function Layout({children}: {children: React.ReactNode}) {
     <div>
       <div
         css={{
-          background: 'hsl(0, 0%, 100%)',
+          background: 'var(--element-color)',
           boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
         }}
       >
@@ -55,9 +55,12 @@ function Layout({children}: {children: React.ReactNode}) {
           <button
             type="button"
             css={{
+              color: 'var(--text-color)',
               padding: '10px 2px',
               background: 'transparent',
-              fontWeight: 600,
+              fontWeight: 300,
+              letterSpacing: '0.5px',
+              fontSize: '1rem',
               display: 'inline-flex',
               svg: {
                 marginRight: 8,
@@ -66,9 +69,10 @@ function Layout({children}: {children: React.ReactNode}) {
                 opacity: 0.8,
               },
             }}
+            onClick={() => setTheme(defaultTheme)}
           >
-            <MoonIcon />
-            Dark Mode
+            {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+            <span css={{textTransform: 'capitalize'}}>{theme} Mode</span>
           </button>
         </div>
       </div>
