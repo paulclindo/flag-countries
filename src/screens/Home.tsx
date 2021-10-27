@@ -40,17 +40,22 @@ export default function Home() {
           <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
           <input
             css={{
-              background: 'white',
+              background: 'var(--element-color)',
+              color: 'var(--text-color)',
               border: 0,
+              borderRadius: 8,
               padding: 20,
               paddingLeft: 60,
               boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
               fontSize: '0.875rem',
               width: '100%',
               marginBottom: 10,
+              '::placeholder': {
+                color: 'var(--text-color)',
+              },
               [md]: {
                 marginBottom: 0,
-                width: 400,
+                width: 440,
               },
             }}
             type="text"
@@ -64,7 +69,8 @@ export default function Home() {
           id="region"
           css={{
             border: 0,
-            background: 'white',
+            background: 'var(--element-color)',
+            color: 'var(--text-color)',
             padding: '15px 23px',
             boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
             alignSelf: 'end',

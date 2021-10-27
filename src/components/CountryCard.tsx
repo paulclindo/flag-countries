@@ -6,7 +6,7 @@ import {Country, CountryPreview} from '../types'
 function LabelRow({label, value}: {label: string; value: string}) {
   return (
     <p css={{fontWeight: 600}}>
-      {label} <span css={{fontWeight: 300}}>{value}</span>
+      {label}: <span css={{fontWeight: 300}}>{value}</span>
     </p>
   )
 }
@@ -24,6 +24,7 @@ const CountrySmallCard = ({
         borderRadius: '6px',
         boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
         overflow: 'hidden',
+        background: 'var(--element-color)',
       }}
     >
       <div
@@ -171,7 +172,7 @@ function CountryBigCard({
             <LabelRow label="Currencies" value={currencies} />
           </div>
         </div>
-        <div css={{display: 'flex', marginTop: 14}}>
+        <div css={{display: 'flex', marginTop: 50}}>
           <p css={{fontWeight: 600, margin: 0, marginRight: 12}}>Languages:</p>
           <div css={{display: 'flex', '& div': {marginLeft: 10}}}>
             {languages?.map((lang) => (
@@ -180,7 +181,10 @@ function CountryBigCard({
                 css={{
                   boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
                   minWidth: 80,
+                  padding: '2px 3px',
                   textAlign: 'center',
+                  background: 'var(--element-color)',
+                  color: 'var(--text-color)',
                 }}
               >
                 {lang}
