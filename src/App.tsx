@@ -14,6 +14,12 @@ import {globalStyles} from './styles/globalStyles'
 const queryClient = new QueryClient()
 
 function Layout({children}: {children: React.ReactNode}) {
+  const [theme, setTheme] = React.useState('light')
+  const defaultTheme = theme === 'light' ? 'dark' : 'light'
+
+  React.useEffect(() => {
+    document.body.setAttribute('class', theme)
+  }, [theme])
   return (
     <div>
       <div
