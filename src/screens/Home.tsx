@@ -2,10 +2,10 @@
 import {jsx} from '@emotion/react'
 import React from 'react'
 import {useQuery} from 'react-query'
-import {getCountries} from '../api/countries'
-import {ReactComponent as SearchIcon} from '../assets/icons/search.svg'
-import {CountrySmallCard} from '../components/CountryCard'
-import {md} from '../styles/breakpoints'
+import {getCountries} from '../domains/countries/api/countries'
+import {ReactComponent as SearchIcon} from '../domains/countries/assets/icons/search.svg'
+import {CountrySmallCard} from '../domains/countries/components/CountryCard'
+import {md} from '../domains/app/styles/breakpoints'
 
 export default function Home() {
   const [countryName, setCountryName] = React.useState<string>('')

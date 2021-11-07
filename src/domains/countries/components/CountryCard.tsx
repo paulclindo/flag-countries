@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
-import {md} from '../styles/breakpoints'
+import {md} from '../../app/styles/breakpoints'
 import {Country, CountryPreview} from '../types'
 import {Link} from 'react-router-dom'
 
