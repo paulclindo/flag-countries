@@ -22,7 +22,7 @@ function Layout({children}: {children: React.ReactNode}) {
   }, [theme])
   return (
     <div>
-      <div
+      <header
         css={{
           background: 'var(--element-color)',
           boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
@@ -75,7 +75,7 @@ function Layout({children}: {children: React.ReactNode}) {
             <span css={{textTransform: 'capitalize'}}>{theme} Mode</span>
           </button>
         </div>
-      </div>
+      </header>
       {children}
     </div>
   )

@@ -19,7 +19,7 @@ const CountrySmallCard = ({
   imgUrl,
 }: CountryPreview) => {
   return (
-    <div
+    <article
       css={{
         borderRadius: '6px',
         boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
@@ -68,7 +68,7 @@ const CountrySmallCard = ({
         <LabelRow label="Region" value={region} />
         <LabelRow label="Capital" value={capitalCity} />
       </div>
-    </div>
+    </article>
   )
 }
 
@@ -85,7 +85,7 @@ function CountryBigCard({
   imgUrl,
 }: Country) {
   return (
-    <div
+    <article
       css={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -193,7 +193,7 @@ function CountryBigCard({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   )
 }
 

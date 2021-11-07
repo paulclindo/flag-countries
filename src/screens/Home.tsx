@@ -23,8 +23,8 @@ export default function Home() {
   )
 
   return (
-    <div css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
-      <div
+    <main css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
+      <nav
         css={{
           display: 'flex',
           marginTop: 40,
@@ -91,7 +91,7 @@ export default function Home() {
           <option value="Africa">Africa</option>
           <option value="Oceania">Oceania</option>
         </select>
-      </div>
+      </nav>
       <div
         css={{
           display: 'grid',
@@ -144,6 +144,6 @@ export default function Home() {
           </p>
         ) : null}
       </div>
-    </div>
+    </main>
   )
 }
