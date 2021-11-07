@@ -18,6 +18,7 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "space-before-function-paren": ["off"],
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/no-unescaped-entities": "off"
   }
 }
