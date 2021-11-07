@@ -102,7 +102,7 @@ export default function Home() {
       <div
         css={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))',
+          gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))',
           gridGap: '60px 40px',
         }}
       >
