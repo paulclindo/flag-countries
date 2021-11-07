@@ -92,6 +92,7 @@ export default function Home() {
           <option disabled value="all">
             Filter by Region
           </option>
+          <option value="all">All</option>
           <option value="Americas">Americas</option>
           <option value="Europe">Europe</option>
           <option value="Asia">Asia</option>
@@ -142,8 +143,8 @@ export default function Home() {
           )
         ) : isSuccess && !countries.length ? (
           <p>
-            Couldn&apos;t find any countries that matches your search &rdquo;
-            <span css={{fontWeight: 600}}>{countryName}</span>&rdquo;
+            Couldn't find any countries that matches your search "
+            <span css={{fontWeight: 600}}>{countryName}</span>"
           </p>
         ) : null}
       </div>
