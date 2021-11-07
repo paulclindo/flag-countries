@@ -2,9 +2,9 @@
 import {jsx} from '@emotion/react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router'
-import {getCountryDetail} from '../api/countries'
-import {CountryBigCard} from '../components/CountryCard'
-import {md} from '../styles/breakpoints'
+import {getCountryDetail} from '../domains/countries/api/countries'
+import {CountryBigCard} from '../domains/countries/components/CountryCard'
+import {md} from '../domains/app/styles/breakpoints'
 import {Link} from 'react-router-dom'
 
 export default function CountryDetails() {
