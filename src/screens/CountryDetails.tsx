@@ -1,15 +1,13 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
 import {useQuery} from 'react-query'
-import {useHistory, useParams} from 'react-router'
+import {useParams} from 'react-router'
 import {getCountryDetail} from '../api/countries'
 import {CountryBigCard} from '../components/CountryCard'
 import {md} from '../styles/breakpoints'
 import {Link} from 'react-router-dom'
 
 export default function CountryDetails() {
-  const history = useHistory()
-
   const {code} = useParams<{code: string}>()
 
   const {isLoading, isError, isSuccess, data, error} = useQuery(
