@@ -21,12 +21,14 @@ export const globalStyles = css`
   }
 
   /* CSS vars */
+
   body.light {
     --element-color: hsl(0, 0%, 100%);
     --text-color: hsl(200, 15%, 8%);
     --background-color: hsl(0, 0%, 98%);
     --input-color: hsl(0, 0%, 52%);
   }
+
   body.dark {
     --element-color: hsl(209, 23%, 22%);
     --text-color: hsl(0, 0%, 100%);
@@ -35,21 +37,25 @@ export const globalStyles = css`
   }
 
   /* Global styles */
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
+
   body {
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
     background: var(--background-color);
     color: var(--text-color);
   }
+
   button {
     border: 0;
     cursor: pointer;
   }
+
   select {
     /* appearance: none; */
     background-color: transparent;
@@ -61,5 +67,19 @@ export const globalStyles = css`
     font-size: inherit;
     cursor: inherit;
     line-height: inherit;
+  }
+
+  // only for screen readers
+  .visually-hidden {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
   }
 `

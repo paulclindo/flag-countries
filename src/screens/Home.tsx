@@ -38,6 +38,9 @@ export default function Home() {
       >
         <div css={{position: 'relative'}}>
           <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
+          <label htmlFor="search" className="visually-hidden">
+            Search for a country
+          </label>
           <input
             css={{
               background: 'var(--element-color)',
@@ -58,12 +61,16 @@ export default function Home() {
                 width: 440,
               },
             }}
+            id="search"
             type="text"
             placeholder="Search for a country..."
             onChange={(e) => setCountryName(e.target.value)}
             value={countryName}
           />
         </div>
+        <label htmlFor="region" className="visually-hidden">
+          Filter by Region
+        </label>
         <select
           name="region"
           id="region"
