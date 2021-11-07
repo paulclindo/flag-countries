@@ -2,7 +2,6 @@
 import {jsx} from '@emotion/react'
 import React from 'react'
 import {useQuery} from 'react-query'
-import {Link} from 'react-router-dom'
 import {getCountries} from '../api/countries'
 import {ReactComponent as SearchIcon} from '../assets/icons/search.svg'
 import {CountrySmallCard} from '../components/CountryCard'
@@ -23,8 +22,9 @@ export default function Home() {
   )
 
   return (
-    <div css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
-      <div
+    <main css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
+      <h2 className="visually-hidden">List of Countries</h2>
+      <nav
         css={{
           display: 'flex',
           marginTop: 40,
@@ -38,6 +38,9 @@ export default function Home() {
       >
         <div css={{position: 'relative'}}>
           <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
+          <label htmlFor="search" className="visually-hidden">
+            Search for a country
+          </label>
           <input
             css={{
               background: 'var(--element-color)',
@@ -58,12 +61,16 @@ export default function Home() {
                 width: 440,
               },
             }}
+            id="search"
             type="text"
             placeholder="Search for a country..."
             onChange={(e) => setCountryName(e.target.value)}
             value={countryName}
           />
         </div>
+        <label htmlFor="region" className="visually-hidden">
+          Filter by Region
+        </label>
         <select
           name="region"
           id="region"
@@ -91,7 +98,7 @@ export default function Home() {
           <option value="Africa">Africa</option>
           <option value="Oceania">Oceania</option>
         </select>
-      </div>
+      </nav>
       <div
         css={{
           display: 'grid',
@@ -104,6 +111,7 @@ export default function Home() {
           Array.from({length: 8}).map((_, idx) => (
             <CountrySmallCard
               key={idx}
+              code="Loading"
               name="Loading..."
               population="Loading..."
               region="Loading..."
@@ -121,20 +129,15 @@ export default function Home() {
               capital: string
               flags: {png: string}
             }) => (
-              <Link
+              <CountrySmallCard
                 key={country.cca2}
-                to={`/detail/${country.cca2}`}
-                css={{color: 'inherit', textDecoration: 'none'}}
-              >
-                <CountrySmallCard
-                  key={country.name.common}
-                  name={country.name.common}
-                  population={country.population}
-                  region={country.region}
-                  capitalCity={country.capital}
-                  imgUrl={country.flags.png}
-                />
-              </Link>
+                code={country.cca2}
+                name={country.name.common}
+                population={country.population}
+                region={country.region}
+                capitalCity={country.capital}
+                imgUrl={country.flags.png}
+              />
             )
           )
         ) : isSuccess && !countries.length ? (
@@ -144,6 +147,6 @@ export default function Home() {
           </p>
         ) : null}
       </div>
-    </div>
+    </main>
   )
 }
