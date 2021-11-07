@@ -4,11 +4,18 @@ import {md} from '../styles/breakpoints'
 import {Country, CountryPreview} from '../types'
 import {Link} from 'react-router-dom'
 
-function LabelRow({label, value}: {label: string; value: string}) {
+function Description({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
   return (
-    <p css={{fontWeight: 600}}>
-      {label}: <span css={{fontWeight: 300}}>{value}</span>
-    </p>
+    <div css={{display: 'flex', marginBottom: 6}}>
+      <dt css={{fontWeight: 600}}>{title}:</dt>
+      <dd css={{marginLeft: 10, fontWeight: 300}}>{description}</dd>
+    </div>
   )
 }
 
@@ -67,13 +74,15 @@ const CountrySmallCard = ({
       >
         <Link
           to={`/detail/${code}`}
-          css={{color: 'inherit', textDecoration: 'none'}}
+          css={{marginBottom: '16px', color: 'inherit', textDecoration: 'none'}}
         >
-          <h3 css={{marginBottom: '16px', fontWeight: 800}}>{name}</h3>
+          <h3 css={{fontWeight: 800}}>{name}</h3>
         </Link>
-        <LabelRow label="Population" value={population} />
-        <LabelRow label="Region" value={region} />
-        <LabelRow label="Capital" value={capitalCity} />
+        <dl css={{margin: 0}}>
+          <Description title="Population" description={population} />
+          <Description title="Region" description={region} />
+          <Description title="Capital" description={capitalCity} />
+        </dl>
       </div>
     </article>
   )
@@ -131,8 +140,9 @@ function CountryBigCard({
           <img src={imgUrl} alt={`${name} flag`} loading="lazy" />
         </div>
       </div>
-      <div
+      <dl
         css={{
+          margin: 0,
           flex: '1 1 100%',
           maxWidth: '100%',
           [md]: {
@@ -159,10 +169,10 @@ function CountryBigCard({
               },
             }}
           >
-            <LabelRow label="Native Name" value={nativeName} />
-            <LabelRow label="Population" value={population} />
-            <LabelRow label="Region" value={region} />
-            <LabelRow label="Sub Region" value={subRegion} />
+            <Description title="Native Name" description={nativeName} />
+            <Description title="Population" description={population} />
+            <Description title="Region" description={region} />
+            <Description title="Sub Region" description={subRegion} />
           </div>
           <div
             css={{
@@ -174,32 +184,36 @@ function CountryBigCard({
               },
             }}
           >
-            <LabelRow label="Capital" value={capitalCity} />
-            <LabelRow label="Top Level Domain" value={domain} />
-            <LabelRow label="Currencies" value={currencies} />
+            <Description title="Capital" description={capitalCity} />
+            <Description title="Top Level Domain" description={domain} />
+            <Description title="Currencies" description={currencies} />
           </div>
         </div>
         <div css={{display: 'flex', marginTop: 50}}>
-          <p css={{fontWeight: 600, margin: 0, marginRight: 12}}>Languages:</p>
-          <div css={{display: 'flex', '& div': {marginLeft: 10}}}>
+          <dt css={{fontWeight: 600, margin: 0, marginRight: 12}}>
+            Languages:
+          </dt>
+          <div css={{display: 'flex'}}>
             {languages?.map((lang) => (
-              <div
+              <dd
                 key={lang}
                 css={{
+                  marginLeft: 0,
                   boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
                   minWidth: 80,
-                  padding: '2px 3px',
+                  padding: '2px 6px',
+                  marginRight: 10,
                   textAlign: 'center',
                   background: 'var(--element-color)',
                   color: 'var(--text-color)',
                 }}
               >
                 {lang}
-              </div>
+              </dd>
             ))}
           </div>
         </div>
-      </div>
+      </dl>
     </article>
   )
 }
