@@ -5,6 +5,7 @@ import {useHistory, useParams} from 'react-router'
 import {getCountryDetail} from '../api/countries'
 import {CountryBigCard} from '../components/CountryCard'
 import {md} from '../styles/breakpoints'
+import {Link} from 'react-router-dom'
 
 export default function CountryDetails() {
   const history = useHistory()
@@ -30,11 +31,14 @@ export default function CountryDetails() {
   return (
     <div css={{maxWidth: 1200, padding: '50px 30px 0', margin: '0 auto'}}>
       <div css={{marginBottom: 40, [md]: {marginBottom: 80}}}>
-        <button
-          onClick={() => history.goBack()}
+        <Link
+          to="/"
           css={{
+            textDecoration: 'none',
+            display: 'block',
+            textAlign: 'center',
             boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
-            minWidth: 135,
+            width: 135,
             padding: 10,
             fontWeight: 300,
             fontSize: '1rem',
@@ -43,7 +47,7 @@ export default function CountryDetails() {
           }}
         >
           Back
-        </button>
+        </Link>
       </div>
       {isError ? <p>Error: {error}</p> : null}
       {isLoading ? (
