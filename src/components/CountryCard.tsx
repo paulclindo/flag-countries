@@ -2,6 +2,7 @@
 import {jsx} from '@emotion/react'
 import {md} from '../styles/breakpoints'
 import {Country, CountryPreview} from '../types'
+import {Link} from 'react-router-dom'
 
 function LabelRow({label, value}: {label: string; value: string}) {
   return (
@@ -17,6 +18,7 @@ const CountrySmallCard = ({
   region,
   capitalCity,
   imgUrl,
+  code,
 }: CountryPreview) => {
   return (
     <article
@@ -63,7 +65,12 @@ const CountrySmallCard = ({
           },
         }}
       >
-        <h3 css={{marginBottom: '16px', fontWeight: 800}}>{name}</h3>
+        <Link
+          to={`/detail/${code}`}
+          css={{color: 'inherit', textDecoration: 'none'}}
+        >
+          <h3 css={{marginBottom: '16px', fontWeight: 800}}>{name}</h3>
+        </Link>
         <LabelRow label="Population" value={population} />
         <LabelRow label="Region" value={region} />
         <LabelRow label="Capital" value={capitalCity} />

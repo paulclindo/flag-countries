@@ -2,7 +2,6 @@
 import {jsx} from '@emotion/react'
 import React from 'react'
 import {useQuery} from 'react-query'
-import {Link} from 'react-router-dom'
 import {getCountries} from '../api/countries'
 import {ReactComponent as SearchIcon} from '../assets/icons/search.svg'
 import {CountrySmallCard} from '../components/CountryCard'
@@ -111,6 +110,7 @@ export default function Home() {
           Array.from({length: 8}).map((_, idx) => (
             <CountrySmallCard
               key={idx}
+              code="Loading"
               name="Loading..."
               population="Loading..."
               region="Loading..."
@@ -128,20 +128,15 @@ export default function Home() {
               capital: string
               flags: {png: string}
             }) => (
-              <Link
+              <CountrySmallCard
                 key={country.cca2}
-                to={`/detail/${country.cca2}`}
-                css={{color: 'inherit', textDecoration: 'none'}}
-              >
-                <CountrySmallCard
-                  key={country.name.common}
-                  name={country.name.common}
-                  population={country.population}
-                  region={country.region}
-                  capitalCity={country.capital}
-                  imgUrl={country.flags.png}
-                />
-              </Link>
+                code={country.cca2}
+                name={country.name.common}
+                population={country.population}
+                region={country.region}
+                capitalCity={country.capital}
+                imgUrl={country.flags.png}
+              />
             )
           )
         ) : isSuccess && !countries.length ? (
