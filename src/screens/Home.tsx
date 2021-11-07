@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <main css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
+      <h2 className="visually-hidden">List of Countries</h2>
       <nav
         css={{
           display: 'flex',
