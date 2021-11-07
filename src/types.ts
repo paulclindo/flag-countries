@@ -1,7 +1,7 @@
 export type Country = {
   name: string,
   population: string,
-  code: string,
+  code?: string,
   region: string,
   capitalCity: string,
   imgUrl: string,
