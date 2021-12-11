@@ -1,24 +1,15 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
-import {useQuery} from 'react-query'
 import {useParams} from 'react-router'
-import {getCountryDetail} from '../domains/countries/api/countries'
 import {CountryBigCard} from '../domains/countries/components/CountryCard'
 import {md} from '../domains/app/styles/breakpoints'
 import {Link} from 'react-router-dom'
+import {useCountryDetail} from '../domains/countries/hooks/useCountryDetail'
 
 export default function CountryDetails() {
   const {code} = useParams<{code: string}>()
+  const {isLoading, isError, isSuccess, country, error} = useCountryDetail(code)
 
-  const {isLoading, isError, isSuccess, data, error} = useQuery(
-    ['country-detail', code],
-    () => getCountryDetail(code),
-    {
-      enabled: !!code,
-    }
-  )
-
-  const country = data?.[0]
   const languages: string[] = Object.values(country?.languages || {})
   const domains = Object.values(country?.tld || {}).join(', ')
   const currencies = Object.values(country?.currencies || {})
@@ -49,18 +40,7 @@ export default function CountryDetails() {
       </div>
       {isError ? <p>Error: {error}</p> : null}
       {isLoading ? (
-        <CountryBigCard
-          name="Loading..."
-          population="Loading..."
-          region="Loading..."
-          capitalCity="Loading..."
-          nativeName="Loading..."
-          subRegion="Loading..."
-          domain="Loading..."
-          currencies="Loading..."
-          languages={['Loading...']}
-          imgUrl="https://cdn-ember.fatsoma.com/assets/components/page/event/card/placeholder-2b4e76c34bea2cea68ac87f7479cb5ce.svg"
-        />
+        <CountryBigCard isLoading={isLoading} />
       ) : isSuccess ? (
         <CountryBigCard
           name={country.name.common}

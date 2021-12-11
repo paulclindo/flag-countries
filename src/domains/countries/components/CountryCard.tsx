@@ -4,29 +4,35 @@ import {md} from '../../app/styles/breakpoints'
 import {Country, CountryPreview} from '../types'
 import {Link} from 'react-router-dom'
 
+type isLoadingState = {isLoading: boolean}
+
 function Description({
   title,
   description,
+  isLoading,
 }: {
   title: string
   description: string
-}) {
+} & isLoadingState) {
   return (
     <div css={{display: 'flex', marginBottom: 6}}>
       <dt css={{fontWeight: 600}}>{title}:</dt>
-      <dd css={{marginLeft: 10, fontWeight: 300}}>{description}</dd>
+      <dd css={{marginLeft: 10, fontWeight: 300}}>
+        {isLoading ? 'Loading...' : description}
+      </dd>
     </div>
   )
 }
 
 const CountrySmallCard = ({
+  isLoading,
   name,
   population,
   region,
   capitalCity,
   imgUrl,
   code,
-}: CountryPreview) => {
+}: isLoadingState & CountryPreview) => {
   return (
     <article
       css={{
@@ -41,7 +47,10 @@ const CountrySmallCard = ({
           paddingBottom: '56.25%',
           height: 0,
           position: 'relative',
-          '& img': {
+        }}
+      >
+        <img
+          css={{
             position: 'absolute',
             objectFit: 'cover',
             width: '100%',
@@ -50,10 +59,15 @@ const CountrySmallCard = ({
             right: 0,
             bottom: 0,
             left: 0,
-          },
-        }}
-      >
-        <img src={imgUrl} alt={`${name} flag`} loading="lazy" />
+          }}
+          src={
+            isLoading
+              ? 'https://cdn-ember.fatsoma.com/assets/components/page/event/card/placeholder-2b4e76c34bea2cea68ac87f7479cb5ce.svg'
+              : imgUrl
+          }
+          alt={`${name} flag`}
+          loading="lazy"
+        />
       </div>
       <div
         css={{
@@ -76,12 +90,24 @@ const CountrySmallCard = ({
           to={`/detail/${code}`}
           css={{marginBottom: '16px', color: 'inherit', textDecoration: 'none'}}
         >
-          <h3 css={{fontWeight: 800}}>{name}</h3>
+          <h3 css={{fontWeight: 800}}>{isLoading ? 'Loading...' : name}</h3>
         </Link>
         <dl css={{margin: 0}}>
-          <Description title="Population" description={population} />
-          <Description title="Region" description={region} />
-          <Description title="Capital" description={capitalCity} />
+          <Description
+            isLoading={isLoading}
+            title="Population"
+            description={population}
+          />
+          <Description
+            isLoading={isLoading}
+            title="Region"
+            description={region}
+          />
+          <Description
+            isLoading={isLoading}
+            title="Capital"
+            description={capitalCity}
+          />
         </dl>
       </div>
     </article>
@@ -89,6 +115,7 @@ const CountrySmallCard = ({
 }
 
 function CountryBigCard({
+  isLoading,
   name,
   nativeName,
   subRegion,
@@ -99,7 +126,7 @@ function CountryBigCard({
   region,
   capitalCity,
   imgUrl,
-}: Country) {
+}: isLoadingState & Country) {
   return (
     <article
       css={{
@@ -125,7 +152,10 @@ function CountryBigCard({
             position: 'relative',
             paddingBottom: '56.25%',
             height: 0,
-            '& img': {
+          }}
+        >
+          <img
+            css={{
               position: 'absolute',
               objectFit: 'cover',
               width: '100%',
@@ -134,10 +164,15 @@ function CountryBigCard({
               right: 0,
               bottom: 0,
               left: 0,
-            },
-          }}
-        >
-          <img src={imgUrl} alt={`${name} flag`} loading="lazy" />
+            }}
+            src={
+              isLoading
+                ? 'https://cdn-ember.fatsoma.com/assets/components/page/event/card/placeholder-2b4e76c34bea2cea68ac87f7479cb5ce.svg'
+                : imgUrl
+            }
+            alt={`${name} flag`}
+            loading="lazy"
+          />
         </div>
       </div>
       <dl
@@ -151,7 +186,7 @@ function CountryBigCard({
           },
         }}
       >
-        <h2>{name}</h2>
+        <h2>{isLoading ? 'Loading...' : name}</h2>
         <div
           css={{
             display: 'flex',
@@ -169,10 +204,26 @@ function CountryBigCard({
               },
             }}
           >
-            <Description title="Native Name" description={nativeName} />
-            <Description title="Population" description={population} />
-            <Description title="Region" description={region} />
-            <Description title="Sub Region" description={subRegion} />
+            <Description
+              isLoading={isLoading}
+              title="Native Name"
+              description={nativeName}
+            />
+            <Description
+              isLoading={isLoading}
+              title="Population"
+              description={population}
+            />
+            <Description
+              isLoading={isLoading}
+              title="Region"
+              description={region}
+            />
+            <Description
+              isLoading={isLoading}
+              title="Sub Region"
+              description={subRegion}
+            />
           </div>
           <div
             css={{
@@ -184,9 +235,21 @@ function CountryBigCard({
               },
             }}
           >
-            <Description title="Capital" description={capitalCity} />
-            <Description title="Top Level Domain" description={domain} />
-            <Description title="Currencies" description={currencies} />
+            <Description
+              isLoading={isLoading}
+              title="Capital"
+              description={capitalCity}
+            />
+            <Description
+              isLoading={isLoading}
+              title="Top Level Domain"
+              description={domain}
+            />
+            <Description
+              isLoading={isLoading}
+              title="Currencies"
+              description={currencies}
+            />
           </div>
         </div>
         <div css={{display: 'flex', marginTop: 50}}>
@@ -194,23 +257,25 @@ function CountryBigCard({
             Languages:
           </dt>
           <div css={{display: 'flex'}}>
-            {languages?.map((lang) => (
-              <dd
-                key={lang}
-                css={{
-                  marginLeft: 0,
-                  boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
-                  minWidth: 80,
-                  padding: '2px 6px',
-                  marginRight: 10,
-                  textAlign: 'center',
-                  background: 'var(--element-color)',
-                  color: 'var(--text-color)',
-                }}
-              >
-                {lang}
-              </dd>
-            ))}
+            {isLoading
+              ? 'Loading'
+              : languages?.map((lang) => (
+                  <dd
+                    key={lang}
+                    css={{
+                      marginLeft: 0,
+                      boxShadow: '0px 2px 4px 0px rgba(0,0,0,0.06)',
+                      minWidth: 80,
+                      padding: '2px 6px',
+                      marginRight: 10,
+                      textAlign: 'center',
+                      background: 'var(--element-color)',
+                      color: 'var(--text-color)',
+                    }}
+                  >
+                    {lang}
+                  </dd>
+                ))}
           </div>
         </div>
       </dl>

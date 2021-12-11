@@ -1,26 +1,32 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
 import React from 'react'
-import {useQuery} from 'react-query'
-import {getCountries} from '../domains/countries/api/countries'
-import {ReactComponent as SearchIcon} from '../domains/countries/assets/icons/search.svg'
 import {CountrySmallCard} from '../domains/countries/components/CountryCard'
 import {md} from '../domains/app/styles/breakpoints'
+import SearchInput from '../domains/countries/components/SearchInput'
+import useDebounce from '../domains/countries/hooks/useDebounce'
+import {useCountries} from '../domains/countries/hooks/useCountries'
 
 export default function Home() {
   const [countryName, setCountryName] = React.useState<string>('')
+  const debounceSetCountryName = useDebounce(setCountryName, 800)
   const [countryRegion, setCountryRegion] = React.useState<string>('all')
+  const [loader, setLoader] = React.useState<boolean>(false)
 
-  const {
-    data: countries,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useQuery(['countries', countryName, countryRegion], () =>
-    getCountries({countryName, countryRegion})
+  const {countries, isLoading, isSuccess, isError, error} = useCountries(
+    countryName,
+    countryRegion
   )
 
+  const handleChangeInput = (countryName) => {
+    setLoader(true)
+    debounceSetCountryName(() => {
+      setLoader(false)
+      return countryName
+    })
+  }
+
+  const isLoadingPage = isLoading || loader
   return (
     <main css={{maxWidth: 1200, padding: '0 30px', margin: '0 auto'}}>
       <h2 className="visually-hidden">List of Countries</h2>
@@ -36,38 +42,7 @@ export default function Home() {
           },
         }}
       >
-        <div css={{position: 'relative'}}>
-          <SearchIcon css={{position: 'absolute', left: 26, top: 20}} />
-          <label htmlFor="search" className="visually-hidden">
-            Search for a country
-          </label>
-          <input
-            css={{
-              background: 'var(--element-color)',
-              color: 'var(--text-color)',
-              border: 0,
-              borderRadius: 8,
-              padding: 20,
-              paddingLeft: 60,
-              boxShadow: '0px 1px 2px 0px rgba(0,0,0,0.05) ',
-              fontSize: '0.875rem',
-              width: '100%',
-              marginBottom: 10,
-              '::placeholder': {
-                color: 'var(--text-color)',
-              },
-              [md]: {
-                marginBottom: 0,
-                width: 440,
-              },
-            }}
-            id="search"
-            type="text"
-            placeholder="Search for a country..."
-            onChange={(e) => setCountryName(e.target.value)}
-            value={countryName}
-          />
-        </div>
+        <SearchInput isLoading={isLoadingPage} onChange={handleChangeInput} />
         <label htmlFor="region" className="visually-hidden">
           Filter by Region
         </label>
@@ -108,17 +83,9 @@ export default function Home() {
         }}
       >
         {isError ? <p>Error: {error}</p> : null}
-        {isLoading ? (
+        {isLoadingPage ? (
           Array.from({length: 8}).map((_, idx) => (
-            <CountrySmallCard
-              key={idx}
-              code="Loading"
-              name="Loading..."
-              population="Loading..."
-              region="Loading..."
-              capitalCity="Loading..."
-              imgUrl="https://cdn-ember.fatsoma.com/assets/components/page/event/card/placeholder-2b4e76c34bea2cea68ac87f7479cb5ce.svg"
-            />
+            <CountrySmallCard key={idx} isLoading={isLoadingPage} />
           ))
         ) : isSuccess && countries.length ? (
           countries.map(
