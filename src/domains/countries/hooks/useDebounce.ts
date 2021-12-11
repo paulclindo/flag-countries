@@ -1,6 +1,6 @@
 import React from 'react'
 
-function debounce(fn, delay) {
+function debounce(fn: Function, delay: number) {
   let timer
   return (...args) => {
     clearTimeout(timer)
@@ -10,7 +10,7 @@ function debounce(fn, delay) {
   }
 }
 
-function useDebounce(callback, delay) {
+function useDebounce(callback: Function, delay: number) {
   const callbackRef = React.useRef(callback)
   const useIsomorphicLayoutEffect =
     typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect

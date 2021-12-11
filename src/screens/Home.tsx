@@ -1,26 +1,21 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/react'
 import React from 'react'
-import {useQuery} from 'react-query'
-import {getCountries} from '../domains/countries/api/countries'
 import {CountrySmallCard} from '../domains/countries/components/CountryCard'
 import {md} from '../domains/app/styles/breakpoints'
 import SearchInput from '../domains/countries/components/SearchInput'
-import useDebounce from '../domains/countries/utils/useDebounce'
+import useDebounce from '../domains/countries/hooks/useDebounce'
+import {useCountries} from '../domains/countries/hooks/useCountries'
 
 export default function Home() {
   const [countryName, setCountryName] = React.useState<string>('')
   const debounceSetCountryName = useDebounce(setCountryName, 800)
   const [countryRegion, setCountryRegion] = React.useState<string>('all')
   const [loader, setLoader] = React.useState<boolean>(false)
-  const {
-    data: countries,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useQuery(['countries', countryName, countryRegion], () =>
-    getCountries({countryName, countryRegion})
+
+  const {countries, isLoading, isSuccess, isError, error} = useCountries(
+    countryName,
+    countryRegion
   )
 
   const handleChangeInput = (countryName) => {
