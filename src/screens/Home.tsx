@@ -85,15 +85,7 @@ export default function Home() {
         {isError ? <p>Error: {error}</p> : null}
         {isLoadingPage ? (
           Array.from({length: 8}).map((_, idx) => (
-            <CountrySmallCard
-              key={idx}
-              code="Loading"
-              name="Loading..."
-              population="Loading..."
-              region="Loading..."
-              capitalCity="Loading..."
-              imgUrl="https://cdn-ember.fatsoma.com/assets/components/page/event/card/placeholder-2b4e76c34bea2cea68ac87f7479cb5ce.svg"
-            />
+            <CountrySmallCard key={idx} isLoading={isLoadingPage} />
           ))
         ) : isSuccess && countries.length ? (
           countries.map(
